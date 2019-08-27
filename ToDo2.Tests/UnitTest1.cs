@@ -17,16 +17,18 @@ namespace ToDo2.Tests
         [System.Obsolete]
         public void PassingTestGetAsync()
         {
-            var options = new DbContextOptionsBuilder<ApiContext>().UseInMemoryDatabase("ToDoDB").Options;
+            //var options = new DbContextOptionsBuilder<ApiContext>().UseInMemoryDatabase("ToDoDB").Options;
             //var db = new ApiContext(options);
-
+            var todo = new Task { Id = 1, Description = "new Todo" };
             var todos = new[] { new Task { Id = 1, Description = "new Todo" } };
-            Mock<IRepository<Task>> mockProductRepository = new Mock<IRepository<Task>>();
-            mockProductRepository.Setup(mr => mr.Get(
+            Mock<IRepository<Task>> mockRepository = new Mock<IRepository<Task>>();
+            mockRepository.Setup(mr => mr.Get(
                 It.IsAny<int>())).Returns((int i) => todos.Where(
                 x => x.Id == i).Single());
-            var repo = mockProductRepository.Object;
+            var repo = mockRepository.Object;
+            repo.Insert(todo);
             Task task = repo.Get(1);
+            
             Assert.NotNull(task);
         }
     }
