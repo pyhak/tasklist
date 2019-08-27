@@ -12,8 +12,8 @@ namespace ToDo2
         {
             
             var task = new Task { Id = 1, Description = "1. todo", ModifiedOn = DateTime.Now};
-            //context.Tasks.Add(task);
-            //context.SaveChanges();
+            context.Tasks.Add(task);
+            context.SaveChanges();
         }
     }
 }

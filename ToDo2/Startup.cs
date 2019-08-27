@@ -9,7 +9,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using ToDo2.Business;
 using ToDo2.Data;
+using ToDo2.Repo;
 
 namespace ToDo2
 {
@@ -28,6 +30,8 @@ namespace ToDo2
         {
             //services.AddDbContext<ApiContext>(opt => opt.UseInMemoryDatabase(databaseName: "ToDoDB"));
             services.AddDbContext<ApiContext>(opts => opts.UseSqlServer(Configuration["ConnectionString:TaskDB"], b => b.MigrationsAssembly("ToDo2")));
+            services.AddTransient(typeof(IToDoService<>), typeof(ToDoService<>));
+            services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
 
             services.Configure<CookiePolicyOptions>(options =>
             {
@@ -60,7 +64,7 @@ namespace ToDo2
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=todo}/{action=Index}/{id?}");
                 routes.MapRoute(
                     name: "todo",
                     template: "{controller=ToDoController}/{action=Index}/{id?}");

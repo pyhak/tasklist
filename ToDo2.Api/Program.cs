@@ -23,7 +23,7 @@ namespace ToDo2.Api
             {
                 var services = scope.ServiceProvider;
                 var context = services.GetRequiredService<ApiContext>();
-                DataGenerator.Initialize(context);
+                //DataGenerator.Initialize(context);
             }
 
             host.Run();
