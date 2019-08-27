@@ -27,7 +27,7 @@ namespace ToDo2.Tests
 
             Task savedTask = repo.Insert(task);
             Assert.NotNull(task);
-            Assert.Equal(1, repo.GetAll().Count());
+            Assert.Single(repo.GetAll());
             Assert.Equal("üks täsk", savedTask.Description);
             }
         private IRepository<Task> GetInMemoryTaskRepository()
