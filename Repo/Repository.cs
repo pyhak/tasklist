@@ -27,7 +27,7 @@ namespace ToDo2.Repo
         {
             return entities.SingleOrDefault(s => s.Id == id);
         }
-        public void Insert(T entity)
+        public T Insert(T entity)
         {
             if (entity == null)
             {
@@ -36,6 +36,7 @@ namespace ToDo2.Repo
             entity.ModifiedOn = DateTime.Now;
             entities.Add(entity);
             context.SaveChanges();
+            return entity;
         }
 
         public T Update(T entity)

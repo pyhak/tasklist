@@ -9,7 +9,7 @@ namespace ToDo2.Repo
     {
         IEnumerable<T> GetAll();
         T Get(long id);
-        void Insert(T entity);
+        T Insert(T entity);
         T Update(T entity);
         void Delete(T entity);
         void Remove(T entity);

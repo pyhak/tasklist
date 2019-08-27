@@ -15,21 +15,33 @@ namespace ToDo2.Tests
     {
         [Fact]
         [System.Obsolete]
-        public void PassingTestGetAsync()
+        public void PassingTestGet()
         {
-            //var options = new DbContextOptionsBuilder<ApiContext>().UseInMemoryDatabase("ToDoDB").Options;
-            //var db = new ApiContext(options);
-            var todo = new Task { Id = 1, Description = "new Todo" };
-            var todos = new[] { new Task { Id = 1, Description = "new Todo" } };
-            Mock<IRepository<Task>> mockRepository = new Mock<IRepository<Task>>();
-            mockRepository.Setup(mr => mr.Get(
-                It.IsAny<int>())).Returns((int i) => todos.Where(
-                x => x.Id == i).Single());
-            var repo = mockRepository.Object;
-            repo.Insert(todo);
-            Task task = repo.Get(1);
-            
+            IRepository<Task> repo = GetInMemoryTaskRepository();
+            Task task = new Task()
+            {
+                Id = 1,
+                Description = "üks täsk",
+                Status = true
+            };
+
+            Task savedTask = repo.Insert(task);
             Assert.NotNull(task);
+            Assert.Equal(1, repo.GetAll().Count());
+            Assert.Equal("üks täsk", savedTask.Description);
+            }
+        private IRepository<Task> GetInMemoryTaskRepository()
+        {
+            DbContextOptions<ApiContext> options;
+            var builder = new DbContextOptionsBuilder<ApiContext>();
+            builder.UseInMemoryDatabase("ToDoDB");
+            options = builder.Options;
+            ApiContext taskDataContext = new ApiContext(options);
+            taskDataContext.Database.EnsureDeleted();
+            taskDataContext.Database.EnsureCreated();
+            return new Repository<Task>(taskDataContext);
         }
+
     }
+
 }
