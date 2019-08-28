@@ -1,4 +1,4 @@
-﻿<form>
+﻿<form @submit.prevent="emitTask">
     <input v-model="description" type="text" placeholder="Enter task...">
-    <button type="submit" @click="addTask()">Add Task</button>
+    <button type="submit">Add Task</button>
 </form>
