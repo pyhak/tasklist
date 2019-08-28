@@ -15,13 +15,14 @@ import TaskForm from './TaskForm';
 export default class TaskComponent extends Vue {
     tasklist: Task[] = [];
     description: '' | undefined;
+    URL: string = 'http://localhost/ToDo2.Api/api/task';
     public msg: string = '';
     mounted() {
         this.getTasklist();
     }
     updateTask(task: Task) {
-        task.Status == true ? false : true;
-        axios.put('https://localhost:44388/api/task', { id : task.Id, task : task }).then((response) => {
+        task.status = task.status == true ? false : true;
+        axios.post(this.URL, task).then((response) => {
             this.tasklist = response.data
         })
             .catch((e) => {
@@ -29,7 +30,7 @@ export default class TaskComponent extends Vue {
             })
     }
     getTasklist() {
-        axios.get('https://localhost:44388/api/task').then((response) => {
+        axios.get(this.URL).then((response) => {
             this.tasklist = response.data
         }).catch((e) => {
             console.error(e)
@@ -38,7 +39,7 @@ export default class TaskComponent extends Vue {
     }
     public addTask(description: string) {
 
-        axios.post('https://localhost:44388/api/task', { id: 0, description: description, Status: false }).then((response) => { this.tasklist = response.data })
+        axios.post(this.URL, { id: 0, description: description, Status: false }).then((response) => { this.tasklist = response.data })
             .catch((e) => {
                 console.error(e)
             })

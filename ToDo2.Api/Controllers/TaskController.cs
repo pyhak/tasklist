@@ -37,15 +37,21 @@ namespace ToDo2.Api.Controllers
         [HttpPost]
         public IEnumerable<Core.Models.Task> Post([FromBody] Core.Models.Task task)
         {
-
-            _service.Add(task);
+            if (task.Id == 0) { 
+                _service.Add(task);
+            }
+            else
+            {
+                _service.Edit(task);
+            }
             return _service.GetAll();
         }
         
         
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] Core.Models.Task task)
+        [HttpPut("{task}")]
+        public void Put([FromBody] Core.Models.Task task)
         {
+            _service.Edit(task);
         }
 
         
