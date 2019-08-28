@@ -1,7 +1,16 @@
 ﻿<div>
-    <h1>My To-Do App! {{msg}}</h1>
-    <task-form @added="addTask" />
-    <ul>
-        <li v-for="task in tasklist"><input type="checkbox" @click="updateTask(task)" :checked="task.status"> {{ task.description }}</li>
-    </ul>
-</div>
+    <div class="jumbotron text-center">
+        <h1>ToDo APP</h1>
+        <p>Powered by Vue & Bootstrap!</p>
+    </div>
+    <div class="container">
+        <div class="row">
+            <task-form @added="addTask" />
+        </div>
+        <div class="row" style="padding-top: 20px">
+            <ul class="list-group">
+                <li class="list-group-item" v-for="task in tasklist"><input  type="checkbox" @click="updateTask(task)" :checked="task.status"> {{ task.description }}</li>
+            </ul>
+        </div>
+    </div>
+    </div>

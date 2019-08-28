@@ -1,6 +1,5 @@
 ﻿import { Component, Vue } from 'vue-property-decorator';
 import WithRender from './Task-form.html';
-import axios from 'axios'
 
 @WithRender
     @Component
@@ -9,12 +8,20 @@ import axios from 'axios'
         })
 export default class TaskForm extends Vue {
     public description: string='';
+    public errors: [] = [];
     
+
     public emitTask(): void {
-
-        this.$emit('added', this.description);
-
-        this.description = '';
+        if (this.description) {
+            this.errors = [];
+            this.$emit('added', this.description);
+            this.description = '';
+        }
+        else {
+            if (!this.description) {
+                this.errors.push('Task description.');
+            }
+        }
 
     }
 }

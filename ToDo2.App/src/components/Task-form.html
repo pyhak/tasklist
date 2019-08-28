@@ -1,4 +1,20 @@
 ﻿<form @submit.prevent="emitTask">
-    <input v-model="description" type="text" placeholder="Enter task...">
-    <button type="submit">Add Task</button>
+    
+        <div class="row">
+            <p v-if="errors.length">
+                <b>Please correct the following error(s):</b>
+                <ul>
+                    <li v-for="error in errors">{{ error }}</li>
+                </ul>
+            </p>
+        </div>
+        <div class="row">
+            <div class="col-xs-3">
+                <input class="form-control" v-model="description" type="text" placeholder="Enter task...">
+            </div>
+            <div class="col-sm">
+                <button class="btn btn-success" type="submit">Add Task</button>
+            </div>
+        </div>
+        
 </form>
