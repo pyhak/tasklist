@@ -12,7 +12,7 @@ namespace Tasklist.Data
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Task>().ToTable("Tasks");
-            new TaskMapping(modelBuilder.Entity<Task>());
+            modelBuilder.ApplyConfiguration(new TaskConfiguration());
         }
 
         [System.Obsolete]
