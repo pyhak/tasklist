@@ -4,9 +4,9 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using ToDo2.Models;
+using Tasklist.Models;
 
-namespace ToDo2.Controllers
+namespace Tasklist.Controllers
 {
     public class HomeController : Controller
     {

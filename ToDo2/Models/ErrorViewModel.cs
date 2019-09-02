@@ -1,6 +1,6 @@
 using System;
 
-namespace ToDo2.Models
+namespace Tasklist.Models
 {
     public class ErrorViewModel
     {

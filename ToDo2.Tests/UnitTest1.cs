@@ -1,10 +1,10 @@
 using Microsoft.EntityFrameworkCore;
-using ToDo2.Data;
-using ToDo2.Core.Models;
+using Tasklist.Data;
+using Tasklist.Core.Models;
 using Xunit;
-using ToDo2.Repo;
+using Tasklist.Repo;
 
-namespace ToDo2.Tests
+namespace Tasklist.Tests
 {
     public class UnitTest1
     {

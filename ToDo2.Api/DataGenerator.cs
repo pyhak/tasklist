@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using ToDo2.Core.Models;
-using ToDo2.Data;
+using Tasklist.Core.Models;
+using Tasklist.Data;
 
-namespace ToDo2
+namespace Tasklist
 {
     public class DataGenerator
     {
@@ -11,7 +10,7 @@ namespace ToDo2
         public static void Initialize(ApiContext context)
         {
             
-            var task = new Task { Id = 1, Description = "1. todo", ModifiedOn = DateTime.Now};
+            var task = new Tasklist.Core.Models.Task { Id = 1, Description = "1. todo", ModifiedOn = DateTime.Now};
             context.Tasks.Add(task);
             context.SaveChanges();
         }

@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace ToDo2.Migrations
+namespace Tasklist.Migrations
 {
     public partial class Ugh : Migration
     {

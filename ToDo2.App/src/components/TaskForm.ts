@@ -8,7 +8,7 @@ import WithRender from './Task-form.html';
         })
 export default class TaskForm extends Vue {
     public description: string='';
-    public errors: [] = [];
+    public errors: string[] = [];
     
 
     public emitTask(): void {
@@ -19,7 +19,7 @@ export default class TaskForm extends Vue {
         }
         else {
             if (!this.description) {
-                this.errors.push('Task description.');
+                this.errors.push("Task description.");
             }
         }
 

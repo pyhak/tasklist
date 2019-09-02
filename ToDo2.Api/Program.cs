@@ -8,9 +8,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using ToDo2.Data;
+using Tasklist.Data;
 
-namespace ToDo2.Api
+namespace Tasklist.Api
 {
     public class Program
     {

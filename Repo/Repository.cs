@@ -1,11 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using ToDo2.Core.Models;
+using Tasklist.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using ToDo2.Data;
+using Tasklist.Data;
 
-namespace ToDo2.Repo
+namespace Tasklist.Repo
 {
     public class Repository<T> : IRepository<T> where T : BaseEntity
     {

@@ -9,8 +9,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ToDo.Data\ToDo2.Data.csproj" />
-    <ProjectReference Include="..\ToDo2.Core\ToDo2.Core.csproj" />
+    <ProjectReference Include="..\ToDo.Data\Tasklist.Data.csproj" />
+    <ProjectReference Include="..\ToDo2.Core\Tasklist.Core.csproj" />
   </ItemGroup>
 
 </Project>

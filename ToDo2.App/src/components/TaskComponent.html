@@ -9,7 +9,7 @@
         </div>
         <div class="row" style="padding-top: 20px">
             <ul class="list-group">
-                <li class="list-group-item" v-for="task in tasklist"><input  type="checkbox" @click="updateTask(task)" :checked="task.status"> {{ task.description }}</li>
+                <li class="list-group-item" v-for="task in tasklist"><font-awesome-icon icon="trash-alt" style="color:red" @click="deleteTask(task)" />&nbsp;&nbsp;&nbsp;<input type="checkbox" @click="updateTask(task)" :checked="task.Status"> {{ task.Description }}</li>
             </ul>
         </div>
     </div>

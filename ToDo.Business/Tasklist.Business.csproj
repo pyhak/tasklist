@@ -5,8 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Repo\ToDo2.Repo.csproj" />
-    <ProjectReference Include="..\ToDo.Data\ToDo2.Data.csproj" />
+    <ProjectReference Include="..\Repo\Tasklist.Repo.csproj" />
+    <ProjectReference Include="..\ToDo.Data\Tasklist.Data.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace ToDo2.Data.configuration
+namespace Tasklist.Data.configuration
 {
     public class TaskMapping
     {

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using ToDo2.Core.Models;
+using Tasklist.Core.Models;
 
-namespace ToDo2.Business
+namespace Tasklist.Business
 {
     public interface IToDoService<T> where T : BaseEntity
     {

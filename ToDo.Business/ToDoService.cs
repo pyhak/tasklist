@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using ToDo2.Core.Models;
-using ToDo2.Data;
-using ToDo2.Repo;
+using Tasklist.Core.Models;
+using Tasklist.Data;
+using Tasklist.Repo;
 
-namespace ToDo2.Business
+namespace Tasklist.Business
 {
     public class ToDoService <T> : IToDoService<T> where T : BaseEntity
     {

@@ -9,11 +9,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using ToDo2.Business;
-using ToDo2.Data;
-using ToDo2.Repo;
+using Tasklist.Business;
+using Tasklist.Data;
+using Tasklist.Repo;
 
-namespace ToDo2
+namespace Tasklist
 {
     public class Startup
     {
@@ -29,7 +29,7 @@ namespace ToDo2
         public void ConfigureServices(IServiceCollection services)
         {
             //services.AddDbContext<ApiContext>(opt => opt.UseInMemoryDatabase(databaseName: "ToDoDB"));
-            services.AddDbContext<ApiContext>(opts => opts.UseSqlServer(Configuration["ConnectionString:TaskDB"], b => b.MigrationsAssembly("ToDo2")));
+            services.AddDbContext<ApiContext>(opts => opts.UseSqlServer(Configuration["ConnectionString:TaskDB"], b => b.MigrationsAssembly("Tasklist")));
             services.AddTransient(typeof(IToDoService<>), typeof(ToDoService<>));
             services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
 

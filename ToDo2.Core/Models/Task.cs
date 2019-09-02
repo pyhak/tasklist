@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ToDo2.Core.Models
+namespace Tasklist.Core.Models
 {
     public class Task : BaseEntity
     {

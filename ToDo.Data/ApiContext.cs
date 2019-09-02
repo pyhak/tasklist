@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using ToDo2.Core.Models;
-using ToDo2.Data.configuration;
+using Tasklist.Core.Models;
+using Tasklist.Data.configuration;
 
-namespace ToDo2.Data
+namespace Tasklist.Data
 {
     public class ApiContext : DbContext
     {

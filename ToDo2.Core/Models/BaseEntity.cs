@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ToDo2.Core.Models
+namespace Tasklist.Core.Models
 {
     public class BaseEntity
     {

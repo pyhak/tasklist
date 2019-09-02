@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using ToDo2.Business;
-using ToDo2.Data;
-using ToDo2.Core.Models;
+using Tasklist.Business;
+using Tasklist.Data;
+using Tasklist.Core.Models;
 
-namespace ToDo2.Controllers
+namespace Tasklist.Controllers
 {
     public class ToDoController : Controller
     {

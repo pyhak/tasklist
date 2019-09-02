@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using ToDo2.Core.Models;
+﻿using System.Collections.Generic;
+using Tasklist.Core.Models;
 
-namespace ToDo2.Repo
+namespace Tasklist.Repo
 {
     public interface IRepository<T> where T : BaseEntity
     {

@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
-using ToDo2.Business;
-using ToDo2.Data;
-using ToDo2.Core.Models;
-using System.Web.Http.Cors;
+using Tasklist.Business;
 
-namespace ToDo2.Api.Controllers
+namespace Tasklist.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -24,7 +18,8 @@ namespace ToDo2.Api.Controllers
         [HttpGet]
         public IEnumerable<Core.Models.Task> Get()
         {
-            return _service.GetAll();
+            var list = _service.GetAll();
+            return list;
         }
 
         // GET api/values/5

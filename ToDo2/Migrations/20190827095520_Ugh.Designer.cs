@@ -5,9 +5,9 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using ToDo2.Data;
+using Tasklist.Data;
 
-namespace ToDo2.Migrations
+namespace Tasklist.Migrations
 {
     [DbContext(typeof(ApiContext))]
     [Migration("20190827095520_Ugh")]
@@ -21,7 +21,7 @@ namespace ToDo2.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("ToDo2.Core.Models.Task", b =>
+            modelBuilder.Entity("Tasklist.Core.Models.Task", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
