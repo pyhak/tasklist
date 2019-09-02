@@ -9,21 +9,23 @@ namespace Tasklist.Repo
 {
     public class Repository<T> : IRepository<T> where T : BaseEntity
     {
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly ApiContext _context;
+        private readonly DbSet<T> entities;
         readonly string errorMessage = string.Empty;
 
-        public Repository(IUnitOfWork unitOfWork)
+        public Repository(ApiContext context)
         {
-            _unitOfWork = unitOfWork;
+            _context = context;
+            entities = context.Set<T>();
         }
-        public IEnumerable<T> GetAll()
+        public List<T> GetAll()
         {
-            return _unitOfWork.Context.Set<T>().AsEnumerable<T>();
+            return entities.ToList();
         }
 
         public T Get(Guid id)
         {
-            return _unitOfWork.Context.Set<T>().SingleOrDefault(s => s.Id == id);
+            return entities.SingleOrDefault(s => s.Id == id);
         }
         public void Insert(T entity)
         {
@@ -33,14 +35,15 @@ namespace Tasklist.Repo
             }
             entity.ModifiedOnUtc = DateTime.UtcNow;
             entity.CreatedOnUtc = DateTime.UtcNow;
-            _unitOfWork.Context.Set<T>().Add(entity);
+            entities.Add(entity);
             
         }
 
         public void Update(T entity)
         {
-            _unitOfWork.Context.Entry(entity).State = EntityState.Modified;
-            _unitOfWork.Context.Set<T>().Attach(entity);
+            entity.ModifiedOnUtc = DateTime.UtcNow;
+            var entry = _context.Entry(entity);
+            entry.State = EntityState.Modified;
         }
 
         public void Delete(T entity)
@@ -49,8 +52,13 @@ namespace Tasklist.Repo
             {
                 throw new ArgumentNullException("entity");
             }
-            _unitOfWork.Context.Set<T>().Remove(entity);
-
+            entities.Remove(entity);
+            
+        }
+        
+        public void SaveChanges()
+        {
+            _context.SaveChanges();
         }
     }
 }

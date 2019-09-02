@@ -17,7 +17,7 @@ namespace Tasklist.Api.Controllers
         }
         // GET api/values
         [HttpGet]
-        public IEnumerable<Core.Models.Task> Get()
+        public List<Core.Models.Task> Get()
         {
             var list = _service.GetAll();
             return list;
@@ -31,7 +31,7 @@ namespace Tasklist.Api.Controllers
         }
         
         [HttpPost]
-        public IEnumerable<Core.Models.Task> Post([FromBody] Core.Models.Task task)
+        public List<Core.Models.Task> Post([FromBody] Core.Models.Task task)
         {
             if (task.Id == null) { 
                 _service.Add(task);

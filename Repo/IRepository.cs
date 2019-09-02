@@ -6,7 +6,7 @@ namespace Tasklist.Repo
 {
     public interface IRepository<T> where T : BaseEntity
     {
-        IEnumerable<T> GetAll();
+        List<T> GetAll();
         T Get(Guid id);
         void Insert(T entity);
         void Update(T entity);

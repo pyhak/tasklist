@@ -25,10 +25,11 @@ namespace Tasklist.Api
         {
 
             //services.AddDbContext<ApiContext>(opt => opt.UseInMemoryDatabase(databaseName: "ToDoDB"));
-            services.AddTransient(typeof(ITasklistService<>), typeof(TasklistService<>));
-            services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
+            services.AddScoped(typeof(ITasklistService<>), typeof(TasklistService<>));
+            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddCors();
-            services.AddDbContext<ApiContext>(opts => opts.UseSqlServer(Configuration["ConnectionString:TaskDB"]));
+            services.AddDbContext<ApiContext>(opts => opts.UseSqlServer(Configuration["ConnectionString:TaskDb"]));
+            
             services.AddMvc(option => option.EnableEndpointRouting = false);
 
             

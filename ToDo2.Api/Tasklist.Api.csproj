@@ -27,5 +27,10 @@
     <ProjectReference Include="..\ToDo.Data\Tasklist.Data.csproj" />
     <ProjectReference Include="..\ToDo2.Core\Tasklist.Core.csproj" />
   </ItemGroup>
-
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.Extensions.SecretManager.Tools" Version="2.0.0" />
+  </ItemGroup>
+  <PropertyGroup>
+    <UserSecretsId>aspnet-TestApp-ce34344-19cf-5472-b34f-d16f2e2276ed</UserSecretsId>
+  </PropertyGroup>
 </Project>

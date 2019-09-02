@@ -49,12 +49,10 @@ namespace Tasklist.Tests
             var builder = new DbContextOptionsBuilder<ApiContext>();
             builder.UseInMemoryDatabase("ToDoDB");
             options = builder.Options;
-            
             ApiContext taskDataContext = new ApiContext(options);
-            UnitOfWork uow = new UnitOfWork(taskDataContext);
             taskDataContext.Database.EnsureDeleted();
             taskDataContext.Database.EnsureCreated();
-            return new Repository<Task>(uow);
+            return new Repository<Task>(taskDataContext);
         }
 
     }
