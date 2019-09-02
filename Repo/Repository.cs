@@ -9,45 +9,38 @@ namespace Tasklist.Repo
 {
     public class Repository<T> : IRepository<T> where T : BaseEntity
     {
-        private readonly ApiContext _context;
-        private DbSet<T> entities;
-        string errorMessage = string.Empty;
+        private readonly IUnitOfWork _unitOfWork;
+        readonly string errorMessage = string.Empty;
 
-        public Repository(ApiContext context)
+        public Repository(IUnitOfWork unitOfWork)
         {
-            _context = context;
-            entities = context.Set<T>();
+            _unitOfWork = unitOfWork;
         }
         public IEnumerable<T> GetAll()
         {
-            return entities.AsEnumerable();
+            return _unitOfWork.Context.Set<T>().AsEnumerable<T>();
         }
 
         public T Get(Guid id)
         {
-            return entities.SingleOrDefault(s => s.Id == id);
+            return _unitOfWork.Context.Set<T>().SingleOrDefault(s => s.Id == id);
         }
-        public T Insert(T entity)
+        public void Insert(T entity)
         {
             if (entity == null)
             {
                 throw new ArgumentNullException("entity");
             }
-            entity.ModifiedOnUtc = DateTime.Now;
-            entities.Add(entity);
-            _context.SaveChanges();
-            return entity;
+            entity.ModifiedOnUtc = DateTime.UtcNow;
+            entity.CreatedOnUtc = DateTime.UtcNow;
+            _unitOfWork.Context.Set<T>().Add(entity);
+            
         }
 
-        public T Update(T entity)
+        public void Update(T entity)
         {
-            if (entity == null)
-            {
-                throw new ArgumentNullException("entity");
-            }
-            entities.Update(entity);
-            _context.SaveChanges();
-            return entity;
+            _unitOfWork.Context.Entry(entity).State = EntityState.Modified;
+            _unitOfWork.Context.Set<T>().Attach(entity);
         }
 
         public void Delete(T entity)
@@ -56,21 +49,8 @@ namespace Tasklist.Repo
             {
                 throw new ArgumentNullException("entity");
             }
-            entities.Remove(entity);
-            _context.SaveChanges();
-        }
-        public void Remove(T entity)
-        {
-            if (entity == null)
-            {
-                throw new ArgumentNullException("entity");
-            }
-            entities.Remove(entity);
-        }
+            _unitOfWork.Context.Set<T>().Remove(entity);
 
-        public void SaveChanges()
-        {
-            _context.SaveChanges();
         }
     }
 }

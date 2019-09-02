@@ -25,7 +25,7 @@ namespace Tasklist.Api
         {
 
             //services.AddDbContext<ApiContext>(opt => opt.UseInMemoryDatabase(databaseName: "ToDoDB"));
-            services.AddTransient(typeof(IToDoService<>), typeof(ToDoService<>));
+            services.AddTransient(typeof(ITasklistService<>), typeof(TasklistService<>));
             services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
             services.AddCors();
             services.AddDbContext<ApiContext>(opts => opts.UseSqlServer(Configuration["ConnectionString:TaskDB"]));

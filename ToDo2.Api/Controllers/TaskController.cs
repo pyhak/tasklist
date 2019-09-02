@@ -9,9 +9,9 @@ namespace Tasklist.Api.Controllers
     [ApiController]
     public class TaskController : ControllerBase
     {
-        private IToDoService<Core.Models.Task> _service;
+        private ITasklistService<Core.Models.Task> _service;
 
-        public TaskController(IToDoService<Core.Models.Task> service)
+        public TaskController(ITasklistService<Core.Models.Task> service)
         {
             _service = service;
         }

@@ -7,8 +7,8 @@ namespace Tasklist.Controllers
 {
     public class TasklistController : Controller
     {
-        private IToDoService<Core.Models.Task> _service;
-        public TasklistController(IToDoService<Core.Models.Task> service)
+        private ITasklistService<Core.Models.Task> _service;
+        public TasklistController(ITasklistService<Core.Models.Task> service)
         {
             _service = service;
         }

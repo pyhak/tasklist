@@ -8,27 +8,32 @@ using Tasklist.Repo;
 
 namespace Tasklist.Business
 {
-    public class ToDoService <T> : IToDoService<T> where T : BaseEntity
+    public class TasklistService <T> : ITasklistService<T> where T : BaseEntity
     {
+        private readonly IUnitOfWork _uow;
         private readonly IRepository<T> _repository;
 
-        public ToDoService(IRepository<T> repository)
+        public TasklistService(IUnitOfWork uow, IRepository<T> repository)
         {
             _repository = repository;
+            _uow = uow;
         }
         public void Add(T entity)
         {
             _repository.Insert(entity);
+            _uow.Commit();
         }
 
         public void Delete(T entity)
         {
             _repository.Delete(entity);
+            _uow.Commit();
         }
 
-        public T Edit(T entity)
+        public void Edit(T entity)
         {
-            return _repository.Update(entity);
+            _repository.Update(entity);
+            _uow.Commit();
         }
 
         public IEnumerable<T> GetAll()

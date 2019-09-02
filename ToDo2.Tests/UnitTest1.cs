@@ -20,10 +20,10 @@ namespace Tasklist.Tests
                 Status = true
             };
 
-            Task savedTask = repo.Insert(task);
+            repo.Insert(task);
             Assert.NotNull(task);
-            Assert.Single(repo.GetAll());
-            Assert.Equal("üks täsk", savedTask.Description);
+            var sTask = Assert.Single(repo.GetAll());
+            Assert.Equal("üks täsk", sTask.Description);
         }
         [Fact]
         public void CanUpdateTask()
@@ -36,10 +36,11 @@ namespace Tasklist.Tests
                 Description = "üks täsk",
                 Status = true
             };
-            Task savedTask = repo.Insert(task);
+            repo.Insert(task);
+            var sTask = Assert.Single(repo.GetAll());
             var desc = "Uuus kirjeldus";
-            savedTask.Description = desc;
-            repo.Update(savedTask);
+            sTask.Description = desc;
+            repo.Update(sTask);
             Assert.Equal(desc, repo.Get(guid).Description);
         }
         private IRepository<Task> GetInMemoryTaskRepository()
@@ -48,10 +49,12 @@ namespace Tasklist.Tests
             var builder = new DbContextOptionsBuilder<ApiContext>();
             builder.UseInMemoryDatabase("ToDoDB");
             options = builder.Options;
+            
             ApiContext taskDataContext = new ApiContext(options);
+            UnitOfWork uow = new UnitOfWork(taskDataContext);
             taskDataContext.Database.EnsureDeleted();
             taskDataContext.Database.EnsureCreated();
-            return new Repository<Task>(taskDataContext);
+            return new Repository<Task>(uow);
         }
 
     }
