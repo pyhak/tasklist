@@ -9,13 +9,13 @@ namespace Tasklist.Repo
 {
     public class Repository<T> : IRepository<T> where T : BaseEntity
     {
-        private readonly ApiContext context;
+        private readonly ApiContext _context;
         private DbSet<T> entities;
         string errorMessage = string.Empty;
 
         public Repository(ApiContext context)
         {
-            this.context = context;
+            _context = context;
             entities = context.Set<T>();
         }
         public IEnumerable<T> GetAll()
@@ -35,7 +35,7 @@ namespace Tasklist.Repo
             }
             entity.ModifiedOnUtc = DateTime.Now;
             entities.Add(entity);
-            context.SaveChanges();
+            _context.SaveChanges();
             return entity;
         }
 
@@ -46,7 +46,7 @@ namespace Tasklist.Repo
                 throw new ArgumentNullException("entity");
             }
             entities.Update(entity);
-            context.SaveChanges();
+            _context.SaveChanges();
             return entity;
         }
 
@@ -57,7 +57,7 @@ namespace Tasklist.Repo
                 throw new ArgumentNullException("entity");
             }
             entities.Remove(entity);
-            context.SaveChanges();
+            _context.SaveChanges();
         }
         public void Remove(T entity)
         {
@@ -70,7 +70,7 @@ namespace Tasklist.Repo
 
         public void SaveChanges()
         {
-            context.SaveChanges();
+            _context.SaveChanges();
         }
     }
 }
