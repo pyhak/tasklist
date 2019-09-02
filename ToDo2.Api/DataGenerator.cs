@@ -10,7 +10,7 @@ namespace Tasklist
         public static void Initialize(ApiContext context)
         {
             
-            var task = new Tasklist.Core.Models.Task { Id = 1, Description = "1. todo", ModifiedOn = DateTime.Now};
+            var task = new Tasklist.Core.Models.Task { Id = new Guid(), Description = "1. todo", ModifiedOnUtc = DateTime.Now};
             context.Tasks.Add(task);
             context.SaveChanges();
         }

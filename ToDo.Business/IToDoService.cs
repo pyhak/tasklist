@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Tasklist.Core.Models;
 
 namespace Tasklist.Business
@@ -7,7 +8,7 @@ namespace Tasklist.Business
     {
         void Add(T entity);
         IEnumerable<T> GetAll();
-        T GetById(int id);
+        T GetById(Guid id);
         void Delete(T entity);
         T Edit(T entity);
     }

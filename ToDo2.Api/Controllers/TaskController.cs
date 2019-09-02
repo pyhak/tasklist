@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Tasklist.Business;
 
@@ -24,7 +25,7 @@ namespace Tasklist.Api.Controllers
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public ActionResult<Core.Models.Task> Get(int id)
+        public ActionResult<Core.Models.Task> Get(Guid id)
         {
             return _service.GetById(id);
         }
@@ -32,7 +33,7 @@ namespace Tasklist.Api.Controllers
         [HttpPost]
         public IEnumerable<Core.Models.Task> Post([FromBody] Core.Models.Task task)
         {
-            if (task.Id == 0) { 
+            if (task.Id == null) { 
                 _service.Add(task);
             }
             else

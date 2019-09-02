@@ -11,6 +11,7 @@ namespace Tasklist.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Task>().ToTable("Tasks");
             new TaskMapping(modelBuilder.Entity<Task>());
         }
 

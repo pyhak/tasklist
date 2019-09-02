@@ -3,6 +3,7 @@ using Tasklist.Data;
 using Tasklist.Core.Models;
 using Xunit;
 using Tasklist.Repo;
+using System;
 
 namespace Tasklist.Tests
 {
@@ -14,7 +15,7 @@ namespace Tasklist.Tests
             IRepository<Task> repo = GetInMemoryTaskRepository();
             Task task = new Task()
             {
-                Id = 1,
+                Id = new Guid(),
                 Description = "üks täsk",
                 Status = true
             };
@@ -28,9 +29,10 @@ namespace Tasklist.Tests
         public void CanUpdateTask()
         {
             IRepository<Task> repo = GetInMemoryTaskRepository();
+            var guid = new Guid();
             Task task = new Task()
             {
-                Id = 1,
+                Id = guid,
                 Description = "üks täsk",
                 Status = true
             };
@@ -38,7 +40,7 @@ namespace Tasklist.Tests
             var desc = "Uuus kirjeldus";
             savedTask.Description = desc;
             repo.Update(savedTask);
-            Assert.Equal(desc, repo.Get(1).Description);
+            Assert.Equal(desc, repo.Get(guid).Description);
         }
         private IRepository<Task> GetInMemoryTaskRepository()
         {

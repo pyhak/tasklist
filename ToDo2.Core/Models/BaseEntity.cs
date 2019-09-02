@@ -7,7 +7,8 @@ namespace Tasklist.Core.Models
     public class BaseEntity
     {
 
-        public int Id { get; set; }
-        public DateTime ModifiedOn { get; set; }
+        public Guid Id { get; set; }
+        public DateTimeOffset ModifiedOnUtc { get; set; }
+        public DateTimeOffset CreatedOnUtc { get; set; }
     }
 }

@@ -1,10 +1,9 @@
 ﻿using System;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Tasklist.Migrations
 {
-    public partial class Ugh : Migration
+    public partial class CreateNewWithChangedTypes : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -12,9 +11,9 @@ namespace Tasklist.Migrations
                 name: "Tasks",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    ModifiedOn = table.Column<DateTime>(nullable: false),
+                    Id = table.Column<Guid>(nullable: false),
+                    ModifiedOnUtc = table.Column<DateTimeOffset>(nullable: false),
+                    CreatedOnUtc = table.Column<DateTimeOffset>(nullable: false),
                     Description = table.Column<string>(maxLength: 500, nullable: false),
                     Status = table.Column<bool>(nullable: false)
                 },

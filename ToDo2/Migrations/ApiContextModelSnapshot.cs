@@ -21,10 +21,12 @@ namespace Tasklist.Migrations
 
             modelBuilder.Entity("Tasklist.Core.Models.Task", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTimeOffset>("CreatedOnUtc")
+                        .HasColumnType("datetimeoffset");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -32,8 +34,8 @@ namespace Tasklist.Migrations
                         .HasMaxLength(500)
                         .IsUnicode(true);
 
-                    b.Property<DateTime>("ModifiedOn")
-                        .HasColumnType("datetime2");
+                    b.Property<DateTimeOffset>("ModifiedOnUtc")
+                        .HasColumnType("datetimeoffset");
 
                     b.Property<bool>("Status")
                         .HasColumnType("bit");

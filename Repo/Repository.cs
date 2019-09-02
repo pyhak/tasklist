@@ -23,7 +23,7 @@ namespace Tasklist.Repo
             return entities.AsEnumerable();
         }
 
-        public T Get(long id)
+        public T Get(Guid id)
         {
             return entities.SingleOrDefault(s => s.Id == id);
         }
@@ -33,7 +33,7 @@ namespace Tasklist.Repo
             {
                 throw new ArgumentNullException("entity");
             }
-            entity.ModifiedOn = DateTime.Now;
+            entity.ModifiedOnUtc = DateTime.Now;
             entities.Add(entity);
             context.SaveChanges();
             return entity;

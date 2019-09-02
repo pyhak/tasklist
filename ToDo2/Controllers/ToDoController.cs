@@ -26,7 +26,7 @@ namespace Tasklist.Controllers
         }
 
         // GET: ToDo/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(Guid id)
         {
             var detail = _service.GetById(id);
             return View(detail);
@@ -87,7 +87,7 @@ namespace Tasklist.Controllers
         }
 
         // GET: ToDo/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(Guid id)
         {
             var task = _service.GetById(id);
             _service.Delete(task);
