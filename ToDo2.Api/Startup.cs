@@ -8,6 +8,8 @@ using System.Web.Http.Cors;
 using Tasklist.Business;
 using Tasklist.Data;
 using Tasklist.Repo;
+using Swashbuckle.AspNetCore.Swagger;
+using Swashbuckle.Swagger;
 
 namespace Tasklist.Api
 {
@@ -29,10 +31,15 @@ namespace Tasklist.Api
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddCors();
             services.AddDbContext<ApiContext>(opts => opts.UseSqlServer(Configuration["ConnectionString:TaskDb"]));
-            
-            services.AddMvc(option => option.EnableEndpointRouting = false);
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "My API", Version = "v1" });
+            });
 
-            
+            services.AddMvc(option => option.EnableEndpointRouting = false);
+            services.AddMvcCore().AddApiExplorer();
+
+
         }
 
 
@@ -51,6 +58,11 @@ namespace Tasklist.Api
                 builder.WithOrigins("http://localhost:1337").AllowAnyMethod().AllowAnyHeader());
             
             app.UseHttpsRedirection();
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+            });
             app.UseMvc();
             
         }
