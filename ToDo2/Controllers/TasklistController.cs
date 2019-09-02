@@ -1,20 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Tasklist.Business;
-using Tasklist.Data;
-using Tasklist.Core.Models;
 
 namespace Tasklist.Controllers
 {
-    public class ToDoController : Controller
+    public class TasklistController : Controller
     {
         private IToDoService<Core.Models.Task> _service;
-        public ToDoController(IToDoService<Core.Models.Task> service)
+        public TasklistController(IToDoService<Core.Models.Task> service)
         {
             _service = service;
         }
