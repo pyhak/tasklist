@@ -30,8 +30,8 @@ namespace Tasklist
         {
             //services.AddDbContext<ApiContext>(opt => opt.UseInMemoryDatabase(databaseName: "ToDoDB"));
             services.AddDbContext<ApiContext>(opts => opts.UseSqlServer(Configuration["ConnectionString:TaskDB"], b => b.MigrationsAssembly("Tasklist")));
-            services.AddTransient(typeof(ITasklistService<>), typeof(TasklistService<>));
-            services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
+            services.AddScoped(typeof(ITasklistService<>), typeof(TasklistService<>));
+            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
             services.Configure<CookiePolicyOptions>(options =>
             {
