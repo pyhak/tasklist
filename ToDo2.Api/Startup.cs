@@ -3,13 +3,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System.Text.Json;
-using System.Web.Http.Cors;
 using Tasklist.Business;
 using Tasklist.Data;
-using Tasklist.Repo;
-using Swashbuckle.AspNetCore.Swagger;
-using Swashbuckle.Swagger;
 
 namespace Tasklist.Api
 {
@@ -29,11 +24,20 @@ namespace Tasklist.Api
             //services.AddDbContext<ApiContext>(opt => opt.UseInMemoryDatabase(databaseName: "ToDoDB"));
             services.AddScoped(typeof(ITasklistService<>), typeof(TasklistService<>));
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+            services.AddScoped(typeof(IUnitOfWork), typeof(UnitOfWork));
+
             services.AddCors();
             services.AddDbContext<ApiContext>(opts => opts.UseSqlServer(Configuration["ConnectionString:TaskDb"]));
-            services.AddSwaggerGen(c =>
+            services.AddSwaggerGen(options =>
             {
-                c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "My API", Version = "v1" });
+                options.DescribeAllEnumsAsStrings();
+                options.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
+                {
+                    Title = "eShopOnContainers - Catalog HTTP API",
+                    Version = "v1",
+                    Description = "The Catalog Microservice HTTP API. This is a Data-Driven/CRUD microservice sample",
+                    TermsOfService = new System.Uri("http://localhost")
+                });
             });
 
             services.AddMvc(option => option.EnableEndpointRouting = false);

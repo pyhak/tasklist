@@ -11,7 +11,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Tasklist.Business;
 using Tasklist.Data;
-using Tasklist.Repo;
 
 namespace Tasklist
 {

@@ -17,8 +17,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tasklist.Api", "ToDo2.Api\T
 EndProject
 Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "Tasklist.App", "ToDo2.App\Tasklist.App.njsproj", "{E4DF9330-FD08-4752-B9C5-C1DC16722668}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tasklist.Repo", "Repo\Tasklist.Repo.csproj", "{EEC720CD-D3AF-4D12-8C47-669ECCA5CC8E}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,10 +51,6 @@ Global
 		{E4DF9330-FD08-4752-B9C5-C1DC16722668}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E4DF9330-FD08-4752-B9C5-C1DC16722668}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E4DF9330-FD08-4752-B9C5-C1DC16722668}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EEC720CD-D3AF-4D12-8C47-669ECCA5CC8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EEC720CD-D3AF-4D12-8C47-669ECCA5CC8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EEC720CD-D3AF-4D12-8C47-669ECCA5CC8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EEC720CD-D3AF-4D12-8C47-669ECCA5CC8E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

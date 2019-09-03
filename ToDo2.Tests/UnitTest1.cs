@@ -2,7 +2,6 @@ using Microsoft.EntityFrameworkCore;
 using Tasklist.Data;
 using Tasklist.Core.Models;
 using Xunit;
-using Tasklist.Repo;
 using System;
 
 namespace Tasklist.Tests
